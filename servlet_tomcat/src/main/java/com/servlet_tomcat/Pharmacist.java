@@ -1,6 +1,5 @@
 package com.servlet_tomcat;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Pharmacist extends User {
@@ -18,22 +17,24 @@ public class Pharmacist extends User {
         this.password = password;
     }
 
+    
+    private static final Pattern PHONE_REGEXT = Pattern.compile("^\\d{10}$");
+
+    public static boolean isValidPhone(String phone){
+        if (phone==null){
+            return false;
+        }
+        return PHONE_REGEXT.matcher(phone).matches();
+    }
+
     @Override
     public String register(){
         int passwordLength = this.password.length();
-        Pattern phonePattern;
-        Matcher matcher;
-        String PHONE_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        phonePattern = Pattern.compile(PHONE_PATTERN);
-        matcher = phonePattern.matcher(this.phone);
-        if (matcher.matches() && passwordLength>8 && passwordLength<11){
+        if (isValidPhone(this.phone) && passwordLength>8 && passwordLength<11){
             return "200__Ok";
         }
-        else if (matcher.matches() && passwordLength>8 && passwordLength<11){
-            return "400__phone number should be valid";
-        }
         else{
-            return "400__password must be between 9 and 10 characters";
+            return "400__Invalid Inputs; check your phone and password should be between 9 and 10 characters";
         }
     }
 

@@ -27,41 +27,59 @@ public class UserLoginServlet extends HttpServlet {
 
             if (role.equals("patient")){
                 Patient temp = gson.fromJson(reader, Patient.class);
-                Patient patient = db.getPatient(new Util().createKey("Patient", temp.username));
-                String[] log_res = new Util().response(new Patient().login(patient.username, patient.password, temp.username, temp.password));
-                if (log_res[0].equals("200")){
-                    response.setStatus(200);
-                    out.print(gson.toJson(new Util().message("Logged In")));
+                Patient patient = db.getPatient(new Util().createKey("patient", temp.username));
+                if (patient!=null){
+                    String[] log_res = new Util().response(new Patient().login(patient.username, patient.password, temp.username, temp.password));
+                    if (log_res[0].equals("200")){
+                        response.setStatus(200);
+                        out.print(gson.toJson(new Util().token(new Util().createKey("patient", patient.username))));
+                    }
+                    else{
+                        response.setStatus(Integer.parseInt(log_res[0]));
+                        out.print(gson.toJson(new Util().message(log_res[1])));
+                    }
                 }
                 else{
-                    response.setStatus(Integer.parseInt(log_res[0]));
-                    out.print(gson.toJson(new Util().message(log_res[1])));
+                    response.setStatus(404);
+                    out.print(gson.toJson(new Util().message("User not found")));
                 }
             }
             else if(role.equals("physician")){
                 Physician temp = gson.fromJson(reader, Physician.class);
-                Physician physician = db.getPhysician(new Util().createKey("Physician", temp.email));
-                String[] log_res = new Util().response(new Physician().login(physician.email, physician.email, temp.email, temp.password));
-                if (log_res[0].equals("200")){
-                    response.setStatus(200);
-                    out.print(gson.toJson(new Util().message("Logged In")));
+                Physician physician = db.getPhysician(new Util().createKey("physician", temp.email));
+                if (physician!=null){
+                    String[] log_res = new Util().response(new Physician().login(physician.email, physician.password, temp.email, temp.password));
+                    if (log_res[0].equals("200")){
+                        response.setStatus(200);
+                        out.print(gson.toJson(new Util().token(new Util().createKey("physician", physician.email))));
+                    }
+                    else{
+                        response.setStatus(Integer.parseInt(log_res[0]));
+                        out.print(gson.toJson(new Util().message(log_res[1])));
+                    }
                 }
                 else{
-                    response.setStatus(Integer.parseInt(log_res[0]));
-                    out.print(gson.toJson(new Util().message(log_res[1])));
+                    response.setStatus(404);
+                    out.print(gson.toJson(new Util().message("User not found")));
                 }
             }
             else if(role.equals("pharmacist")){
                 Pharmacist temp = gson.fromJson(reader, Pharmacist.class);
-                Pharmacist pharmacist = db.getPharmacist(new Util().createKey("Pharmacist", temp.phone));
-                String[] log_res = new Util().response(new Pharmacist().login(pharmacist.phone, pharmacist.phone, temp.phone, temp.password));
-                if (log_res[0].equals("200")){
-                    response.setStatus(200);
-                    out.print(gson.toJson(new Util().message("Logged In")));
+                Pharmacist pharmacist = db.getPharmacist(new Util().createKey("pharmacist", temp.phone));
+                if (pharmacist!=null){
+                    String[] log_res = new Util().response(new Pharmacist().login(pharmacist.phone, pharmacist.password, temp.phone, temp.password));
+                    if (log_res[0].equals("200")){
+                        response.setStatus(200);
+                        out.print(gson.toJson(new Util().token(new Util().createKey("pharmacist", pharmacist.phone))));
+                    }
+                    else{
+                        response.setStatus(Integer.parseInt(log_res[0]));
+                        out.print(gson.toJson(new Util().message(log_res[1])));
+                    }
                 }
                 else{
-                    response.setStatus(Integer.parseInt(log_res[0]));
-                    out.print(gson.toJson(new Util().message(log_res[1])));
+                    response.setStatus(404);
+                    out.print(gson.toJson(new Util().message("User not found")));
                 }
             }
             else{

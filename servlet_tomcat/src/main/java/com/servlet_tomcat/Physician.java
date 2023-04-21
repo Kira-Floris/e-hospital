@@ -6,6 +6,8 @@ public class Physician extends User{
     public String email;
     public String password;
     static String temp_role = "physician";
+    Pattern emailPattern;
+    Matcher matcher;
 
     public Physician() {
         
@@ -17,22 +19,24 @@ public class Physician extends User{
         this.password = password;
     }
 
+    private static final Pattern EMAIL_REGEX =
+            Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+    public static boolean isValidEmail(String email) {
+        if (email==null){
+            return false;
+        }
+        return EMAIL_REGEX.matcher(email).matches();
+    }
+
     @Override
     public String register(){
         int passwordLength = this.password.length();
-        Pattern emailPattern;
-        Matcher matcher;
-        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        emailPattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = emailPattern.matcher(this.email);
-        if (matcher.matches() && passwordLength>6 && passwordLength<9){
+        if (isValidEmail(this.email) && passwordLength>6 && passwordLength<9){
             return "200__Ok";
         }
-        else if (matcher.matches()!=true && passwordLength>6 && passwordLength<9){
-            return "400__Email should be valid";
-        }
         else{
-            return "400__password must be between 4 and 6 characters";
+            return "400__Invalid Inputs; Check you email and password should be between 7 and 8 characters";
         }
     }
 

@@ -2,6 +2,7 @@ com\servlet_tomcat\Patient.class
 com\servlet_tomcat\Util.class
 com\servlet_tomcat\UserLoginServlet.class
 com\servlet_tomcat\Util$Message.class
+com\servlet_tomcat\Util$Token.class
 com\servlet_tomcat\UserMap.class
 com\servlet_tomcat\App.class
 com\servlet_tomcat\DatabaseSingletonMap.class

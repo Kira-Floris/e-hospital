@@ -18,5 +18,16 @@ public class Util {
             this.message = message;
         }
     }
+
+    public Token token(String key){
+        return new Token(key);
+    }
+
+    class Token{
+        public String token;
+        Token(String key){
+            this.token = key;
+        }
+    }
     
 }
