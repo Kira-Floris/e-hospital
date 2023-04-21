@@ -3,15 +3,10 @@ package com.servlet_tomcat;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +21,7 @@ public class UserRegisterServlet extends HttpServlet {
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
+
         DatabaseSingletonMap userDataMap = DatabaseSingletonMap.getInstance();
 
         if (userDataMap != null){
@@ -36,13 +32,13 @@ public class UserRegisterServlet extends HttpServlet {
                 
                 String[] res = userDataMap.addPatient(patient);
                 if (res[0].equals("200")){
-                    Patient userTemp = userDataMap.getPatient(userDataMap.createKey(patient, patient.username)); 
+                    Patient userTemp = userDataMap.getPatient(new Util().createKey(patient.role, patient.username)); 
                     response.setStatus(200);
                     out.print(gson.toJson(userTemp));
                 }
                 else{
                     response.setStatus(Integer.parseInt(res[0]));
-                    out.print(gson.toJson(new ErrorMessage(res[1])));
+                    out.print(gson.toJson(new Util().message(res[1])));
                 }
             }
             else if (role.equals("physician")){
@@ -50,12 +46,12 @@ public class UserRegisterServlet extends HttpServlet {
                 
                 String[] res = userDataMap.addPhysician(physician);
                 if (res[0].equals("200")){
-                    Physician userTemp = userDataMap.getPhysician(userDataMap.createKey(physician, physician.email)); 
+                    Physician userTemp = userDataMap.getPhysician(new Util().createKey(physician.role, physician.email)); 
                     out.print(gson.toJson(userTemp));
                 }
                 else{
                     response.setStatus(Integer.parseInt(res[0]));
-                    out.print(gson.toJson(new ErrorMessage(res[1])));
+                    out.print(gson.toJson(new Util().message(res[1])));
                 }
 
             }
@@ -64,37 +60,23 @@ public class UserRegisterServlet extends HttpServlet {
                 
                 String[] res = userDataMap.addPharmacist(pharmacist);
                 if (res[0].equals("200")){
-                    Pharmacist userTemp = userDataMap.getPharmacist(userDataMap.createKey(pharmacist, pharmacist.phone)); 
+                    Pharmacist userTemp = userDataMap.getPharmacist(new Util().createKey(pharmacist.role, pharmacist.phone)); 
                     response.setStatus(200);
                     out.print(gson.toJson(userTemp));
                 }
                 else{
                     response.setStatus(Integer.parseInt(res[0]));
-                    out.print(gson.toJson(new ErrorMessage(res[1])));
+                    out.print(gson.toJson(new Util().message(res[1])));
                 }
             }
             else{
                 response.setStatus(400);
-                out.print(gson.toJson(new ErrorMessage("User role must be patient, physician or pharmacist")));
+                out.print(gson.toJson(new Util().message("User role must be patient, physician or pharmacist")));
             }
         }
         else{
-            response.setStatus(404);
-            out.print(gson.toJson(new ErrorMessage("No Data Found")));
+            response.setStatus(500);
+            out.print(gson.toJson(new Util().message("DB not Found")));
         }
-
-
-
-        // Todo todo = gson.fromJson(reader, Todo.class);
-        
-        // out.print(role);
-
-    }
-}
-
-class ErrorMessage{
-    public String message;
-    ErrorMessage(String message){
-        this.message = message;
     }
 }

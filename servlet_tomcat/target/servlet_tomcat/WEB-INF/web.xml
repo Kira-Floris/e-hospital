@@ -13,6 +13,15 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UserRegisterServlet</servlet-name>
-    <url-pattern>/user/*</url-pattern>
+    <url-pattern>/user/register/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>UserLoginServlet</servlet-name>
+    <servlet-class>com.servlet_tomcat.UserLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserLoginServlet</servlet-name>
+    <url-pattern>/user/login/*</url-pattern>
+  </servlet-mapping>
+
 </web-app>

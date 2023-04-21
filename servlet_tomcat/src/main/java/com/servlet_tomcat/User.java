@@ -19,6 +19,6 @@ public abstract class User{
     }
 
     public abstract String register();
-    public abstract String login();
+    public abstract String login(String db_unique_identifier, String db_password, String unique_identifier, String password);
     // public abstract void logout();
 }

@@ -1,7 +1,6 @@
 package com.servlet_tomcat;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class UserMap {
     public LinkedHashMap<String, User> userData = new LinkedHashMap<>();

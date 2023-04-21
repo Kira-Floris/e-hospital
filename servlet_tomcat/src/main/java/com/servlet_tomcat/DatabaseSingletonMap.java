@@ -4,10 +4,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DatabaseSingletonMap {
-    private static DatabaseSingletonMap instance;
-    private Map<String, Patient> patientData;
-    private Map<String, Physician> physicianData;
-    private Map<String, Pharmacist> pharmacistData;
+    public static DatabaseSingletonMap instance;
+    public Map<String, Patient> patientData;
+    public Map<String, Physician> physicianData;
+    public Map<String, Pharmacist> pharmacistData;
 
     private DatabaseSingletonMap(){
         patientData = new LinkedHashMap<>();
@@ -58,24 +58,16 @@ public class DatabaseSingletonMap {
         return pharmacistData.containsKey(userKey);
     }
 
-    public String createKey(User user, String unique_identifier){
-        return user.role + "__" + unique_identifier;
-    }
-
-    private String[] response(String status){
-        return status.split("__");
-    }
-
     public String[] addPatient(Patient user){
-        String[] checkValidation = response(user.register());
+        String[] checkValidation = new Util().response(user.register());
         String status = checkValidation[0];
         if (status.equals("200")){
-            String userKey = createKey(user, user.username);
+            String userKey = new Util().createKey(user.role, user.username);
             if (checkPatientExist(userKey)){
-                return response("400__unique identifier already exists");
+                return new Util().response("400__unique identifier already exists");
             }
             else{
-                patientData.put(createKey(user, user.username), user);
+                patientData.put(new Util().createKey(user.role, user.username), user);
                 return checkValidation;
             }
         }    
@@ -85,15 +77,15 @@ public class DatabaseSingletonMap {
     }
 
     public String[] addPhysician(Physician user){
-        String[] checkValidation = response(user.register());
+        String[] checkValidation = new Util().response(user.register());
         String status = checkValidation[0];
         if (status.equals("200")){
-            String userKey = createKey(user, user.email);
+            String userKey = new Util().createKey(user.role, user.email);
             if (checkPhysicianExist(userKey)){
-                return response("400__unique identifier already exists");
+                return new Util().response("400__unique identifier already exists");
             }
             else{
-                physicianData.put(createKey(user, user.email), user);
+                physicianData.put(new Util().createKey(user.role, user.email), user);
                 return checkValidation;
             }
         }    
@@ -103,15 +95,15 @@ public class DatabaseSingletonMap {
     }
 
     public String[] addPharmacist(Pharmacist user){
-        String[] checkValidation = response(user.register());
+        String[] checkValidation = new Util().response(user.register());
         String status = checkValidation[0];
         if (status.equals("200")){
-            String userKey = createKey(user, user.phone);
+            String userKey = new Util().createKey(user.role, user.phone);
             if (checkPharmacistExist(userKey)){
-                return response("400__unique identifier already exists");
+                return new Util().response("400__unique identifier already exists");
             }
             else{
-                pharmacistData.put(createKey(user, user.phone), user);
+                pharmacistData.put(new Util().createKey(user.role, user.phone), user);
                 return checkValidation;
             }
         }    

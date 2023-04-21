@@ -5,6 +5,10 @@ public class Patient extends User {
     public String password;
     static String temp_role = "patient";
 
+    public Patient(){
+        
+    }
+
     public Patient(String username, String password, String name, Integer age, String gender){
         super(name, age, gender, temp_role);
         this.username = username;
@@ -23,7 +27,10 @@ public class Patient extends User {
     }
 
     @Override
-    public String login(){
-        return "";
+    public String login(String db_username, String db_password, String username, String password){
+        if (db_username.equals(username) && db_password.equals(password)){
+            return "200__Ok"; 
+        }
+        return "400__invalid credentials";
     }
 }
