@@ -33,7 +33,7 @@ public class PharmacistDrugsServlet extends HttpServlet{
                     String[] data = line.split(",");
 
                     fileFound=true;
-                    medicines.add(new Medicine(data[0], data[1], data[2], data[3], data[4]));
+                    medicines.add(new Medicine(data[0], data[1], data[2]));
                 }
                 br.close();
             }else{

@@ -65,15 +65,25 @@ public class Util {
         return patientsList;
     }
 
-    public boolean checkMedicineExist(List<Medicine> medicines, String medId){
+    public boolean checkMedicineExist(List<Medicine> medicines, String medName){
         boolean medExist;
         medExist = false;
         for (Medicine med: medicines){
-            if (med.id.equals(medId)){
+            if (med.med_name.equals(medName)){
                 medExist = true;
             }
         }
         return medExist;
+    }
+
+    public Medicine getMedicine(List<Medicine> medicines, String medName){
+        Medicine temp = null;
+        for (Medicine med: medicines){
+            if(med.med_name.equals(medName)){
+                temp = new Medicine(med.med_name, med.med_price, med.med_expiration);
+            }
+        }
+        return temp;
     }
 
 }
@@ -114,26 +124,23 @@ class PhysicianConsultationSchema{
 
 class PharmacistProvisionSchema{
     public String patientKey;
-    public String medicineId;
+    public String medicineName;
 
-    PharmacistProvisionSchema(String patientKey, String medicineId){
+    PharmacistProvisionSchema(String patientKey, String medicineName){
         this.patientKey = patientKey;
-        this.medicineId = medicineId;
+        this.medicineName = medicineName;
     }
 }
 
-class Medicine{
-    public String id;
-    public String name;
-    public String type;
-    public String description;
-    public String price;
 
-    Medicine(String id, String name, String type, String description, String price){
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.description = description;
-        this.price = price;
+class Medicine{
+    public String med_name;
+    public String med_price;
+    public String med_expiration;
+
+    Medicine(String med_name, String med_price, String med_expiration){
+        this.med_name = med_name;
+        this.med_price = med_price;
+        this.med_expiration = med_expiration;
     }
 }

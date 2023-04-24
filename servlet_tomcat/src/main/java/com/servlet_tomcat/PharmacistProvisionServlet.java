@@ -32,7 +32,7 @@ public class PharmacistProvisionServlet extends HttpServlet{
                     String[] data = line.split(",");
 
                     fileFound=true;
-                    medicines.add(new Medicine(data[0], data[1], data[2], data[3], data[4]));
+                    medicines.add(new Medicine(data[0], data[1], data[2]));
                 }
                 br.close();
             }else{
@@ -98,12 +98,19 @@ public class PharmacistProvisionServlet extends HttpServlet{
                 if(db.checkPharmacistExist(token)){
                     PharmacistProvisionSchema item = gson.fromJson(reader, PharmacistProvisionSchema.class);
                     if (db.checkPatientPharmacistExist(new Util().createCombinationKey(item.patientKey, token))){
-                        boolean medExist = new Util().checkMedicineExist(medicines, item.medicineId);
+                        boolean medExist = new Util().checkMedicineExist(medicines, item.medicineName);
                         if (medExist){
-                            String[] res = db.addPharmacistProvision(new Util().createCombinationKey(token, item.patientKey), item);
+                            Medicine med = new Util().getMedicine(medicines, item.medicineName);
+                            if (med != null){
+                                String[] res = db.addPharmacistProvision(new Util().createCombinationKey(token, item.patientKey), item);
 
-                            response.setStatus(Integer.parseInt(res[0]));
-                            out.print(gson.toJson(new Util().message(res[1])));
+                                response.setStatus(Integer.parseInt(res[0]));
+                                out.print(gson.toJson(new Util().message(res[1])));
+                            }
+                            else{
+                                response.setStatus(404);
+                                out.print(gson.toJson(new Util().message("Medicine name not found")));
+                            }
                         }
                         else{
                             response.setStatus(404);

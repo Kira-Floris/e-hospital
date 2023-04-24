@@ -1,4 +1,4 @@
-﻿id,name,type,description,price
-1,paracetamol,headache,,15
-2,mebendazole,stomach worms,,10
-3,fervex,respiratory diseases,,12
+﻿med_name,med_price,med_expiration
+paracetamol,15,15-12-2023
+mebendazole,20,15-12-2023
+fervex,30,15-12-2023

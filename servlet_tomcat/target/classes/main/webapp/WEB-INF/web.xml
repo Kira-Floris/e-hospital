@@ -33,7 +33,23 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PatientConnectionServlet</servlet-name>
-    <url-pattern>/patient/*</url-pattern>
+    <url-pattern>/patient/connection/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>PatientConsultationServlet</servlet-name>
+    <servlet-class>com.servlet_tomcat.PatientConsultationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientDrugsServlet</servlet-name>
+    <url-pattern>/patient/drugs</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>PatientDrugsServlet</servlet-name>
+    <servlet-class>com.servlet_tomcat.PatientDrugsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientConsultationServlet</servlet-name>
+    <url-pattern>/patient/consultation</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>PhysicianConsultationServlet</servlet-name>

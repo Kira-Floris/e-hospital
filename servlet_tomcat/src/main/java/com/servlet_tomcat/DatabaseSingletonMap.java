@@ -51,11 +51,11 @@ public class DatabaseSingletonMap {
         return patientPharmacistData;
     }
 
-    public Map<String, PhysicianConsultationSchema> getPhysicianConsultationData(){
+    public Map<String, PhysicianConsultationSchema> getPhysicianConsultationMap(){
         return physicianConsultationData;
     }
 
-    public Map<String, PharmacistProvisionSchema> getPharmacistProvisionData(){
+    public Map<String, PharmacistProvisionSchema> getPharmacistProvisionMap(){
         return pharmacistProvisionData;
     }
 
