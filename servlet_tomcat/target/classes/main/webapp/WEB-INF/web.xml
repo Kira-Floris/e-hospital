@@ -51,4 +51,12 @@
     <servlet-name>PharmacistDrugsServlet</servlet-name>
     <url-pattern>/pharmacist/drugs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>PharmacistProvisionServlet</servlet-name>
+    <servlet-class>com.servlet_tomcat.PharmacistProvisionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PharmacistProvisionServlet</servlet-name>
+    <url-pattern>/pharmacist/provision</url-pattern>
+  </servlet-mapping>
 </web-app>

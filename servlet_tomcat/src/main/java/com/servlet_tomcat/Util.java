@@ -65,6 +65,17 @@ public class Util {
         return patientsList;
     }
 
+    public boolean checkMedicineExist(List<Medicine> medicines, String medId){
+        boolean medExist;
+        medExist = false;
+        for (Medicine med: medicines){
+            if (med.id.equals(medId)){
+                medExist = true;
+            }
+        }
+        return medExist;
+    }
+
 }
 
 class Identifier{
@@ -103,11 +114,11 @@ class PhysicianConsultationSchema{
 
 class PharmacistProvisionSchema{
     public String patientKey;
-    public String medicine;
+    public String medicineId;
 
-    PharmacistProvisionSchema(String patientKey, String medicine){
+    PharmacistProvisionSchema(String patientKey, String medicineId){
         this.patientKey = patientKey;
-        this.medicine = medicine;
+        this.medicineId = medicineId;
     }
 }
 
