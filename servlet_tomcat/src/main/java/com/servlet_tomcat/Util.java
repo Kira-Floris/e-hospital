@@ -110,3 +110,19 @@ class PharmacistProvisionSchema{
         this.medicine = medicine;
     }
 }
+
+class Medicine{
+    public String id;
+    public String name;
+    public String type;
+    public String description;
+    public String price;
+
+    Medicine(String id, String name, String type, String description, String price){
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.description = description;
+        this.price = price;
+    }
+}

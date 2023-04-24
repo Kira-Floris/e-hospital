@@ -7,6 +7,10 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/resources/*</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>UserRegisterServlet</servlet-name>
     <servlet-class>com.servlet_tomcat.UserRegisterServlet</servlet-class>
@@ -39,5 +43,12 @@
     <servlet-name>PhysicianConsultationServlet</servlet-name>
     <url-pattern>/physician/consultation</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <servlet-name>PharmacistDrugsServlet</servlet-name>
+    <servlet-class>com.servlet_tomcat.PharmacistDrugsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PharmacistDrugsServlet</servlet-name>
+    <url-pattern>/pharmacist/drugs</url-pattern>
+  </servlet-mapping>
 </web-app>
