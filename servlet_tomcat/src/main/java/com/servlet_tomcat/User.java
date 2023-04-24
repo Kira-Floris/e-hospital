@@ -18,6 +18,14 @@ public abstract class User{
         this.role = role;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public Integer getAge(){
+        return this.age;
+    }
+
     public abstract String register();
     public abstract String login(String db_unique_identifier, String db_password, String unique_identifier, String password);
     // public abstract void logout();

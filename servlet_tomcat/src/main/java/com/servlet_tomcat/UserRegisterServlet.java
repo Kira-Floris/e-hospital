@@ -29,10 +29,12 @@ public class UserRegisterServlet extends HttpServlet {
 
             if (role.equals("patient")){
                 Patient patient = gson.fromJson(reader, Patient.class);
+                String key = new Util().createKey(patient.role, patient.username);
+                patient.userKey = key;
                 
                 String[] res = userDataMap.addPatient(patient);
                 if (res[0].equals("200")){
-                    Patient userTemp = userDataMap.getPatient(new Util().createKey(patient.role, patient.username)); 
+                    Patient userTemp = userDataMap.getPatient(key);
                     response.setStatus(200);
                     out.print(gson.toJson(userTemp));
                 }
@@ -43,10 +45,12 @@ public class UserRegisterServlet extends HttpServlet {
             }
             else if (role.equals("physician")){
                 Physician physician = gson.fromJson(reader, Physician.class);
+                String key = new Util().createKey(physician.role, physician.email);
+                physician.userKey = key;
                 
                 String[] res = userDataMap.addPhysician(physician);
                 if (res[0].equals("200")){
-                    Physician userTemp = userDataMap.getPhysician(new Util().createKey(physician.role, physician.email)); 
+                    Physician userTemp = userDataMap.getPhysician(key);
                     out.print(gson.toJson(userTemp));
                 }
                 else{
@@ -57,10 +61,12 @@ public class UserRegisterServlet extends HttpServlet {
             }
             else if (role.equals("pharmacist")){
                 Pharmacist pharmacist = gson.fromJson(reader, Pharmacist.class);
+                String key = new Util().createKey(pharmacist.role, pharmacist.phone);
+                pharmacist.userKey = key;
                 
                 String[] res = userDataMap.addPharmacist(pharmacist);
                 if (res[0].equals("200")){
-                    Pharmacist userTemp = userDataMap.getPharmacist(new Util().createKey(pharmacist.role, pharmacist.phone)); 
+                    Pharmacist userTemp = userDataMap.getPharmacist(key);
                     response.setStatus(200);
                     out.print(gson.toJson(userTemp));
                 }
