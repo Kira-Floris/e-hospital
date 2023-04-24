@@ -90,11 +90,12 @@ public class PharmacistDrugsServlet extends HttpServlet{
                     Medicine medicine = gson.fromJson(reader, Medicine.class);
                     medicines.add(medicine);
                     try{
-                        FileWriter fw = new FileWriter(filePath);
+                        FileWriter fw = new FileWriter(getServletContext().getRealPath("/"+filePath), false);
                         for (Medicine med: medicines) {
-                            fw.write(med.toString() + "\n");
+                            fw.write(med.med_name+","+med.med_price+","+med.med_expiration+ "\n");
                         }
                         addMedOk = true;
+                        fw.flush();
                         fw.close();
                     }catch (Exception e){
                         addMedOk = false;

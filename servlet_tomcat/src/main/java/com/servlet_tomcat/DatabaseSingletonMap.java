@@ -2,6 +2,7 @@ package com.servlet_tomcat;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.time.Instant;
 
 public class DatabaseSingletonMap {
     public static DatabaseSingletonMap instance;
@@ -191,7 +192,8 @@ public class DatabaseSingletonMap {
         if (checkPatientExist(item.patientKey) != true){
             return new Util().response("404__Patient does not exist");
         }
-        physicianConsultationData.put(key, item);
+        Instant timestamp = Instant.now();
+        physicianConsultationData.put(key+"___"+timestamp, item);
         return new Util().response("200__Ok");
     }
 
@@ -199,7 +201,8 @@ public class DatabaseSingletonMap {
         if (checkPatientExist(item.patientKey) != true){
             return new Util().response("404__Patient does not exist");
         }
-        pharmacistProvisionData.put(key, item);
+        Instant timestamp = Instant.now();
+        pharmacistProvisionData.put(key+"___"+timestamp, item);
         return new Util().response("200__Ok");
     }
 }
