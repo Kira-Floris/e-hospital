@@ -7,6 +7,10 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+  </filter>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/resources/*</url-pattern>
@@ -40,16 +44,16 @@
     <servlet-class>com.servlet_tomcat.PatientConsultationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PatientDrugsServlet</servlet-name>
-    <url-pattern>/patient/drugs</url-pattern>
+    <servlet-name>PatientConsultationServlet</servlet-name>
+    <url-pattern>/patient/consultation</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>PatientDrugsServlet</servlet-name>
     <servlet-class>com.servlet_tomcat.PatientDrugsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PatientConsultationServlet</servlet-name>
-    <url-pattern>/patient/consultation</url-pattern>
+    <servlet-name>PatientDrugsServlet</servlet-name>
+    <url-pattern>/patient/drugs</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>PhysicianConsultationServlet</servlet-name>
