@@ -7,17 +7,18 @@ const ServletRoutes = require("../util/ServletRoutes");
 const servletRoutes = new ServletRoutes();
 const ResponseFormat = require("../util/ResponseFormat");
 
-router.post("/register/:role", async (req, res)=>{
+router.get("/consultation", async (req, res) => {
     try{
-        const urlRoute = await servletRoutes.getFullRoute("UserRegisterServlet");
-        const role = req.params.role;
-        const url = urlRoute+"/"+role;
-        const config = {
+        const urlRoute = await servletRoutes.getFullRoute("PhysicianConsultationServlet");
+        const token = req.header("Authorization");
+        const url = urlRoute;
+        const headers = {
             headers: {
+                "Authorization": token,
                 "Content-Type": "application/json"
             }
         };
-        const response = await axios.post(url, req.body, config);
+        const response = await axios.get(url, headers);
         const data = response.data;
         res.statusCode = response.status;
         res.json(ResponseFormat(data, "Success"));
@@ -27,17 +28,19 @@ router.post("/register/:role", async (req, res)=>{
     }
 });
 
-router.post("/login/:role", async (req, res) => {
+router.post("/consultation", async (req, res) => {
     try{
-        const urlRoute = await servletRoutes.getFullRoute("UserLoginServlet");
-        const role = req.params.role;
-        const url = urlRoute+"/"+role;
-        const config = {
+        const urlRoute = await servletRoutes.getFullRoute("PhysicianConsultationServlet");
+        const token = req.header("Authorization");
+        const body = req.body;
+        const url = urlRoute;
+        const headers = {
             headers: {
+                "Authorization": token,
                 "Content-Type": "application/json"
             }
         };
-        const response = await axios.post(url, req.body, config);
+        const response = await axios.post(url, body, headers);
         const data = response.data;
         res.statusCode = response.status;
         res.json(ResponseFormat(data, "Success"));

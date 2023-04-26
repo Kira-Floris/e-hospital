@@ -39,17 +39,21 @@
        },
        "PatientConsultationServlet":{
           "name":"PatientConsultationServlet",
-          "url":"/patient/consultation/",
+          "url":"/patient/consultation",
           "methods":[
              "GET"
           ]
        },
        "PatientDrugsServlet":{
           "name":"PatientDrugsSerlet",
-          "url":"/patient/drugs/",
+          "url":"/patient/drugs",
           "methods":[
              "GET"
-          ]
+          ],
+          "responseFormat": {
+            "format":"csv",
+            "columns": ["med_name","med_price","med_expiration"]
+          }
        },
        "PhysicianConsultationServlet":{
           "name":"PhysicianConsultationServlet",
