@@ -1,6 +1,9 @@
 import React from 'react';
 import { useContext, useState } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
+
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -15,6 +18,7 @@ function App() {
   const [message, setMessage] = useState("");
   return (
     <Router>
+      <ToastContainer/>
       <AuthProvider>
           <Navbar/>
           <Route path="/" exact><Home/></Route>

@@ -31,7 +31,7 @@ export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
         <div className="container">
-            <Link className="navbar-brand" to="/" style={{color:"#70E7B5", fontSize:"2rem", fontWeight:"bold"}}>FAOCS</Link>
+            <Link className="navbar-brand" to="/" style={{color:"#70E7B5", fontSize:"2rem", fontWeight:"bold"}}>E-HOSP</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -40,9 +40,6 @@ export default function Navbar() {
             <ul className="navbar-nav mb-2 mb-lg-0">
                 <li className="nav-item h6 mx-3">
                     <Link className="nav-link link-secondary" to="/">Home</Link>
-                </li>
-                <li className="nav-item h6 mx-3">
-                    <Link className="nav-link link-secondary" to="/documentation">Documentation</Link>
                 </li>
                 <li className="nav-item h6 mx-3">
                     <Link className="nav-link link-secondary" to="/dashboard">Dashboard</Link>

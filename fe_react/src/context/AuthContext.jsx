@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import {toast} from "react-toastify";
 
 import jwt_decode from 'jwt-decode';
 
@@ -21,7 +22,7 @@ export const AuthProvider = ({children}) =>{
 
     let loginUser = async(e) => {
         e.preventDefault();
-        const url = `/api/auth/login/${e.target.role.value}`;
+        const url = `http://localhost:5000/api/auth/login/${e.target.role.value}`;
         let body;
         if (e.target.role.value==="pharmacist"){
             body = {
@@ -46,25 +47,31 @@ export const AuthProvider = ({children}) =>{
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             });
+            console.log(response)
             let data = await response.json();
             if (response.status === 200){
                 setAuthTokens(data.data.userKey);
                 setUser(data.data);
                 localStorage.setItem("authTokens", JSON.stringify(data.data.userKey));
                 localStorage.setItem("userData", JSON.stringify(data.data));
+                toast.success("Login successful");
+            }else{
+                toast.error("Login Failed. Check your credentials");
             }
         } catch(err){
+            console.log(err);
             setAuthTokens(null);
             setUser(null);
             localStorage.removeItem("authTokens");
             localStorage.removeItem("userData");
+            toast.error("Login Failed");
         }
 
     };
 
     let registerUser = async(e) => {
         e.preventDefault();
-        const url = `/api/auth/register/${e.target.role.value}`;
+        const url = `http://localhost:5000/api/auth/register/${e.target.role.value}`;
         let body;
         if (e.target.role.value==="pharmacist"){
             body = {
@@ -107,12 +114,17 @@ export const AuthProvider = ({children}) =>{
                 setUser(data.data);
                 localStorage.setItem("authTokens", JSON.stringify(data.data.userKey));
                 localStorage.setItem("userData", JSON.stringify(data.data));
+                toast.success("Registration Successful");
+            }
+            else{
+                toast.error("Registration Failure. Check your input");
             }
         } catch(err){
             setAuthTokens(null);
             setUser(null);
             localStorage.removeItem("authTokens");
             localStorage.removeItem("userData");
+            toast.error("Registration Failed");
         }
     };
 
