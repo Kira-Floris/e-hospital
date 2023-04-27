@@ -32,7 +32,7 @@ public class UserLoginServlet extends HttpServlet {
                     String[] log_res = new Util().response(new Patient().login(patient.username, patient.password, temp.username, temp.password));
                     if (log_res[0].equals("200")){
                         response.setStatus(200);
-                        out.print(gson.toJson(new Util().token(new Util().createKey("patient", patient.username))));
+                        out.print(gson.toJson(patient));
                     }
                     else{
                         response.setStatus(Integer.parseInt(log_res[0]));
@@ -51,7 +51,7 @@ public class UserLoginServlet extends HttpServlet {
                     String[] log_res = new Util().response(new Physician().login(physician.email, physician.password, temp.email, temp.password));
                     if (log_res[0].equals("200")){
                         response.setStatus(200);
-                        out.print(gson.toJson(new Util().token(new Util().createKey("physician", physician.email))));
+                        out.print(gson.toJson(physician));
                     }
                     else{
                         response.setStatus(Integer.parseInt(log_res[0]));
@@ -70,7 +70,7 @@ public class UserLoginServlet extends HttpServlet {
                     String[] log_res = new Util().response(new Pharmacist().login(pharmacist.phone, pharmacist.password, temp.phone, temp.password));
                     if (log_res[0].equals("200")){
                         response.setStatus(200);
-                        out.print(gson.toJson(new Util().token(new Util().createKey("pharmacist", pharmacist.phone))));
+                        out.print(gson.toJson(pharmacist));
                     }
                     else{
                         response.setStatus(Integer.parseInt(log_res[0]));
