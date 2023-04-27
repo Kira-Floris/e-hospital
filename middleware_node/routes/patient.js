@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const csv = require("csv-parser");
+const csv = require("csvtojson");
 const {Transform} = require("json2csv");
 const fs = require("fs");
 
@@ -91,19 +91,14 @@ router.get("/drugs", async (req, res) => {
             }
         };
         const response = await axios.get(url, headers);
-        let data = response.data;
-        data = fields.toString(",")+
-                "\n"+
-                data;
-        
-        res.setHeader("Content-Type", "text/csv");
-        res.setHeader("Content-Disposition", "attachment; filename=drugs-prescriptions.csv");
+        const csvData = fields+"\n"+response.data;
+        const jsonData = await csv().fromString(csvData);
 
         res.statusCode = response.status;
-        res.send(data);
+        res.json(ResponseFormat(jsonData,"Successful"));
     } catch (err) {
         res.statusCode = 500;
-        res.send("Internal server error");  
+        res.json(ResponseFormat(err.response.data, "Fail"));  
     }
 });
 

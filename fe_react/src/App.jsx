@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
+import PatientConnect from './components/PatientConnect';
 import AuthContext, {AuthProvider} from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -24,6 +25,9 @@ function App() {
           <Route path="/" exact><Home/></Route>
           <Route path="/register" exact><Register/></Route>
           <Route path="/login" exact><Login/></Route>
+          <PrivateRoute>
+            <Route path="/patient/connect" exact><PatientConnect/></Route>
+          </PrivateRoute>
           <Footer/>
       </AuthProvider>
     </Router>
