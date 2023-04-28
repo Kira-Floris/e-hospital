@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PhysicianConsultationServlet extends HttpServlet{
     private final Gson gson = new Gson();
 
+    // this function gives a physician a list of all patients who gave him/her access
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();
@@ -59,6 +60,7 @@ public class PhysicianConsultationServlet extends HttpServlet{
         }
     }
 
+    // this function allows a physician to give consultations to a patient 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();

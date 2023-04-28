@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  fe_react:
+    image: fe_react:latest
+    build: ./fe_react
+    command: npm start
+    container_name: fe_react
+    depends_on:
+      - middleware_node
+    volumes:
+      - "./:/fe_react"
+    ports:
+      - 3000:3000
+    restart: always
+  middleware_node:
+    image: middleware_node:latest
+    build: ./middleware_node
+    container_name: middleware_node
+    depends_on:
+      - servlet_tomcat
+    volumes:
+      - ./:/middleware_node
+    ports:
+      - 5000:5000
+    environment:
+      BASE_URL: http://${DOCKER_GATEWAY_HOST:-host.docker.internal}:8080/servlet_tomcat
+    restart: always
+  servlet_tomcat:
+    image: servlet_tomcat:latest
+    build: ./servlet_tomcat
+    container_name: servlet_tomcat
+    volumes:
+      - ./:/servlet_tomcat
+    ports:
+      - 8080:8080
+    restart: always
+
+    
+    

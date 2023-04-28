@@ -18,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 public class PatientConnectionServlet extends HttpServlet {
     private final Gson gson = new Gson();
 
-    // @Override
+    // This function gets a list of 
+    //  1. physicians
+    //  2. pharmacist
+    // so that a user can choose who to connect to
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();
@@ -71,7 +74,8 @@ public class PatientConnectionServlet extends HttpServlet {
         }
     }
 
-    // @Override
+
+    // this function grants access to a pharmacist or physician
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();

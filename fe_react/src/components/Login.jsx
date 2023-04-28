@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 
 import AuthContext from "../context/AuthContext";
 
@@ -43,6 +43,9 @@ const Login = () => {
             </div>
             <input type="hidden" name="role" value="patient"/>
             <button type="submit" className="my-2 btn btn-primary">Submit</button>
+            <div>
+              <span><Link to="/register">Create an Account?</Link></span>
+            </div>
           </form>
         </div>
       )}
@@ -62,6 +65,9 @@ const Login = () => {
           </div>
           <input type="hidden" name="role" value="physician"/>
           <button type="submit" className="my-2 btn btn-primary">Submit</button>
+          <div>
+              <span><Link to="/register">Create an Account?</Link></span>
+            </div>
         </form>
       </div>
       )}
@@ -81,6 +87,9 @@ const Login = () => {
           </div>
           <input type="hidden" name="role" value="pharmacist"/>
           <button type="submit" className="my-2 btn btn-primary">Submit</button>
+          <div>
+              <span><Link to="/register">Create an Account?</Link></span>
+            </div>
         </form>
       </div>
       )}

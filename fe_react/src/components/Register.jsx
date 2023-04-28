@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import {Link} from "react-router-dom";
 
 import AuthContext from "../context/AuthContext";
 
@@ -70,6 +71,9 @@ const Register = () => {
             </div>
             <input type="hidden" name="role" value="patient"/>
             <button type="submit" className="my-2 btn btn-primary">Submit</button>
+            <div>
+            <span><Link to="/login">Have an Account? Login</Link></span>
+          </div>
           </form>
         </div>
       )}
@@ -118,6 +122,9 @@ const Register = () => {
             </div>
           <input type="hidden" name="role" value="physician"/>
           <button type="submit" className="my-2 btn btn-primary">Submit</button>
+          <div>
+            <span><Link to="/login">Have an Account? Login</Link></span>
+          </div>
         </form>
       </div>
       )}
@@ -166,6 +173,9 @@ const Register = () => {
             </div>
           <input type="hidden" name="role" value="pharmacist"/>
           <button type="submit" className="my-2 btn btn-primary">Submit</button>
+          <div>
+            <span><Link to="/login">Have an Account? Login</Link></span>
+          </div>
         </form>
       </div>
       )}

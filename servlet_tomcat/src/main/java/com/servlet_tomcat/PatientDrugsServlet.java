@@ -44,7 +44,7 @@ public class PatientDrugsServlet  extends HttpServlet{
         }
     }
 
-    // @Override
+    // this function gets all drugs prescribed to a patient by a pharmacist
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();

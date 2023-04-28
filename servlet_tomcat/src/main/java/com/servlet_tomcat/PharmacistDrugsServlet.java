@@ -45,6 +45,7 @@ public class PharmacistDrugsServlet extends HttpServlet{
         }
     }
 
+    // this function returns a list of all medicines to a pharmacist
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();
@@ -75,6 +76,7 @@ public class PharmacistDrugsServlet extends HttpServlet{
         }
     }
 
+    // this function adds medicine the medicine.csv
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();

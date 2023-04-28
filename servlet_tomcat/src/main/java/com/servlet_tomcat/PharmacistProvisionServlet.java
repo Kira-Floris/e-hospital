@@ -58,7 +58,8 @@ public class PharmacistProvisionServlet extends HttpServlet{
                     Map<String, Patient> myPatients = new LinkedHashMap<>();
                     for (Map.Entry<String, PatientPharmacistSchema> entry: APD.entrySet()){
                         String key = entry.getKey();
-                        if (token.equals(new Util().splitCombinationKey(key)[0])){
+
+                        if (token.equals(new Util().splitCombinationKey(key)[1])){
                             String patientKey = new Util().splitCombinationKey(key)[0];
                             myPatients.put(patientKey, db.getPatient(patientKey));
                         }

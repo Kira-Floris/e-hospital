@@ -55,6 +55,8 @@ export const AuthProvider = ({children}) =>{
                 localStorage.setItem("authTokens", JSON.stringify(data.data.userKey));
                 localStorage.setItem("userData", JSON.stringify(data.data));
                 toast.success("Login successful");
+                const temp = "/"+e.target.role.value;
+                history.push(temp);
             }else{
                 toast.error("Login Failed. Check your credentials");
             }
@@ -65,6 +67,7 @@ export const AuthProvider = ({children}) =>{
             localStorage.removeItem("authTokens");
             localStorage.removeItem("userData");
             toast.error("Login Failed");
+            history.push("/login");
         }
 
     };
@@ -115,6 +118,8 @@ export const AuthProvider = ({children}) =>{
                 localStorage.setItem("authTokens", JSON.stringify(data.data.userKey));
                 localStorage.setItem("userData", JSON.stringify(data.data));
                 toast.success("Registration Successful");
+                const temp = "/"+e.target.role.value;
+                history.push(temp);
             }
             else{
                 toast.error("Registration Failure. Check your input");
@@ -125,6 +130,7 @@ export const AuthProvider = ({children}) =>{
             localStorage.removeItem("authTokens");
             localStorage.removeItem("userData");
             toast.error("Registration Failed");
+            history.push("/register");
         }
     };
 
@@ -133,17 +139,18 @@ export const AuthProvider = ({children}) =>{
         setUser(null);
         localStorage.removeItem("authTokens");
         localStorage.removeItem("userData");
-    }
+    };
 
     let checkTokenValidation = async() => {
         const tok = localStorage.getItem("authTokens");
+        console.log(tok);
         if(tok === undefined || tok === null){
             logOut();
         }
         if(loading){
             setLoading(false);
         }
-    }
+    };
 
 
     useEffect(()=>{

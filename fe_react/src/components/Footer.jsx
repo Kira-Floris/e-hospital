@@ -17,12 +17,9 @@ const Footer = () => {
                         <Link className="nav-link link-secondary" to="/">Home</Link>
                     </li>
                     <li className="px-2">
-                        <Link className="nav-link link-secondary" to="/documentation">Documentation</Link>
+                        <Link className="nav-link link-secondary" to="/login">Login</Link>
                     </li>
                     <li className="px-2">
-                        <Link className="nav-link link-secondary" to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li className="pr-2">
                         <Link className="nav-link link-secondary" to="/register">Register</Link>
                     </li>
                 </ul>

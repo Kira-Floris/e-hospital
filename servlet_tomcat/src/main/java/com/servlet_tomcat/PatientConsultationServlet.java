@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PatientConsultationServlet  extends HttpServlet{
     private final Gson gson = new Gson();
 
-    // @Override
+    // this function gets all consultations given by physicians
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         BufferedReader reader = request.getReader();
         PrintWriter out = response.getWriter();

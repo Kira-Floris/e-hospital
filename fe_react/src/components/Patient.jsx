@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from "react";
 import AuthContext from "../context/AuthContext";
 import {toast} from "react-toastify";
-import axios from "axios";
+import {CSVLink} from "react-csv";
 
-let PatientConnect = () =>{
+let Patient = () =>{
     const [selectedButton, setSelectedButton] = useState("physician");
     const {authTokens} = useContext(AuthContext);
 
@@ -255,7 +255,10 @@ let PatientConnect = () =>{
 
             {selectedButton === "pharmacistsPrescriptions" && (
                 <div>
-                    <h1 className="text-center pb-3">Pharmacist Prescription</h1>
+                    <h1 className="text-center pb-2">Pharmacist Prescription</h1>
+                    <div className="text-center pb-2">
+                        <CSVLink data={prescriptions} filename={"drugs-prescriptions.csv"}>Download Prescriptions</CSVLink>
+                    </div>
                     <table className="table">
                         <thead>
                             <tr>
@@ -285,4 +288,4 @@ let PatientConnect = () =>{
     );
 }
 
-export default PatientConnect;
+export default Patient;
