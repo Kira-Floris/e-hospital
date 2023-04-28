@@ -14,9 +14,6 @@ const Footer = () => {
             <div className="col-8 text-end">
                 <ul className="d-flex list-unstyled justify-content-end">
                     <li className="px-2">
-                        <Link className="nav-link link-secondary" to="/">Home</Link>
-                    </li>
-                    <li className="px-2">
                         <Link className="nav-link link-secondary" to="/login">Login</Link>
                     </li>
                     <li className="px-2">
