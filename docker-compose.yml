@@ -9,7 +9,7 @@ services:
     depends_on:
       - middleware_node
     volumes:
-      - "./:/fe_react"
+      - ./:/fe_react
     ports:
       - 3000:3000
     restart: always
