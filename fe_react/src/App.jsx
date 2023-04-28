@@ -26,6 +26,7 @@ function App() {
       <ToastContainer/>
       <AuthProvider>
           <Navbar/>
+          <Route path="/" exact><Login/></Route>
           <Route path="/register" exact><Register/></Route>
           <Route path="/login" exact><Login/></Route>
           <PrivateRoute>
